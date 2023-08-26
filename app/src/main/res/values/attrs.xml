@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="backgroundOverlay" format="reference"/>
+    <attr name="emphasis" format="reference"/>
+    <attr name="text" format="reference"/>
+</resources>
