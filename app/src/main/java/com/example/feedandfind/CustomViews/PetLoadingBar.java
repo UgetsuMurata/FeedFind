@@ -3,6 +3,7 @@ package com.example.feedandfind.CustomViews;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -69,7 +70,11 @@ public class PetLoadingBar extends FrameLayout {
     }
 
     public void setProgress(int progress) {
-        int fill = (int) (paws * (Math.ceil((float) progress / (float) max)));
+        int fill = (int) (paws * ((float) progress / (float) max));
+        Log.d("SET_PROGRESS", "Progress: "+progress);
+        Log.d("SET_PROGRESS", "Max: "+max);
+        Log.d("SET_PROGRESS", "Percentage: "+(float) progress / (float) max);
+        Log.d("SET_PROGRESS", "Fill: "+fill);
         ColorStateList stateList = ThemedColor.getColorStateList(context, R.attr.emphasis);
         for (int paw_number = 0; paw_number < fill; paw_number++){
             pawsList.get(paw_number).setImageTintList(stateList);

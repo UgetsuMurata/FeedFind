@@ -42,6 +42,7 @@
             android:textSize="36sp"/>
     </LinearLayout>
     <TextView
+        android:id="@+id/loading_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/quicksand"
@@ -50,6 +51,7 @@
         android:textAlignment="center"
         android:textColor="?text"/>
     <com.example.feedandfind.CustomViews.PetLoadingBar
+        android:id="@+id/loading_display"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
