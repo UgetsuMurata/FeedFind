@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Features.Dashboard"
+    android:background="?background"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -53,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/cabin"
         android:text="@string/user"
-        android:textColor="#000000"
+        android:textColor="?text"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/custom_toolbar" />
@@ -66,6 +67,7 @@
         android:fontFamily="@font/quicksand"
         android:text="@string/desc"
         android:textSize="12sp"
+        android:textColor="?text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
