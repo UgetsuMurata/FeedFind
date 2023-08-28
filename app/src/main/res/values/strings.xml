@@ -2,7 +2,25 @@
     <string name="app_name">Feed and Find</string>
     <string name="content_description_dogpaw">dog paw</string>
     <string name="mapAPIKey">AIzaSyCQ7cZSLgPwcQwAQGkfe7jKnRRWVSzuVHA</string>
+
+    <!--Toolbar-->
     <string name="title_location">Daet, Camarines Norte</string>
+
+    <!--Dashboard-->
     <string name="user">Hi, User!</string>
     <string name="desc">Keep your cherished pets well-fed and effortlessly found.</string>
+
+
+    <!--Image Desc-->
+    <string name="icon_description">Icon Description</string>
+    <string name="navigation_header">navigation header</string>
+
+
+    <!--NavHeader-->
+    <string name="username">Username</string>
+    <string name="user_gmail_com">user@gmail.com</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+
+
 </resources>
