@@ -17,5 +17,6 @@
         <item name="backgroundOverlay">@color/background_overlay_night</item>
         <item name="emphasis">@color/emphasis_night</item>
         <item name="text">@color/white</item>
+        <item name="toolbarStyle">@color/topbar_night</item>
     </style>
 </resources>

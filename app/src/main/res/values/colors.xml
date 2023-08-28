@@ -14,4 +14,6 @@
     <color name="background_overlay_night">#FF445481</color>
     <color name="emphasis_night">#FFFFC107</color>
     <color name="emphasis_day">#FFA43ED7</color>
+    <color name="topbar_night">#000060</color>
+    <color name="topbar_day">#FFE7DDB6</color>
 </resources>
