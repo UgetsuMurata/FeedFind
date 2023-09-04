@@ -21,7 +21,7 @@
 
         <activity
             android:name=".Features.GPSMap"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Features.Dashboard"
             android:exported="true" />

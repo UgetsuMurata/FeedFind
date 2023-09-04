@@ -3,4 +3,10 @@
     <attr name="backgroundOverlay" format="reference"/>
     <attr name="emphasis" format="reference"/>
     <attr name="text" format="reference"/>
+    <declare-styleable name="CornerCardView">
+        <attr name="topLeftCornerRadius" format="dimension" />
+        <attr name="topRightCornerRadius" format="dimension" />
+        <attr name="bottomLeftCornerRadius" format="dimension" />
+        <attr name="bottomRightCornerRadius" format="dimension" />
+    </declare-styleable>
 </resources>
