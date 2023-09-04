@@ -4,17 +4,17 @@ import android.os.Bundle;
 
 import com.example.feedandfind.NavigationMenu.NavigationDrawer;
 import com.example.feedandfind.R;
-import com.example.feedandfind.databinding.ActivityNavigationDrawerBinding;
+import com.example.feedandfind.databinding.FeaturesDashboardBinding;
 
 
 public class Dashboard extends NavigationDrawer {
 
-    ActivityNavigationDrawerBinding activityNavigationDrawerBinding;
+    FeaturesDashboardBinding activityNavigationDrawerBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityNavigationDrawerBinding = ActivityNavigationDrawerBinding.inflate(getLayoutInflater());
+        activityNavigationDrawerBinding = FeaturesDashboardBinding.inflate(getLayoutInflater());
         setContentView(activityNavigationDrawerBinding.getRoot());
     }
 }

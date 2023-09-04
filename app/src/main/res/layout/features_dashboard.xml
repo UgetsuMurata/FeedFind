@@ -13,9 +13,8 @@
         android:id="@+id/custom_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#E7DDB6"
+        android:background="?toolbarStyle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -31,7 +30,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_location"
-                android:contentDescription="@string/icon_description" />
+                android:contentDescription="@string/icon_description"
+                app:tint="?text"/>
 
             <TextView
                 android:id="@+id/toolbar_title"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin"
                 android:text="@string/title_location"
-                android:textColor="@android:color/black"
+                android:textColor="?text"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
