@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include layout="@layout/features_dashboard"
+    <include layout="@layout/navigationmenu_content_layout"
         android:layout_height="match_parent"
         android:layout_width="match_parent"/>
 

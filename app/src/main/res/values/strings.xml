@@ -23,4 +23,10 @@
     <string name="close">close</string>
 
 
+    <!--Navigation-->
+    <string name="gps">GPS</string>
+    <string name="feeder">Feeder</string>
+    <string name="reports">Reports</string>
+
+
 </resources>
