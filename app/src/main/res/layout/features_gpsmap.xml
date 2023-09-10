@@ -89,7 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_minus"
-                android:paddingHorizontal="10dp"/>
+                android:paddingHorizontal="10dp"
+                app:tint="?text"/>
             <TextView
                 android:id="@+id/radius"
                 android:layout_width="wrap_content"
@@ -103,7 +104,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_plus"
-                android:paddingHorizontal="10dp"/>
+                android:paddingHorizontal="10dp"
+                app:tint="?text"/>
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"

@@ -1,25 +1,45 @@
 package com.example.feedandfind.Features;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
-import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.feedandfind.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+import java.util.concurrent.CountDownLatch;
+
 public class GPSMap extends AppCompatActivity {
+
+    private static final int PERMISSION_REQUEST_LOCATION = 1;
+    LatLng viewLatLng;
 
     LinearLayout cornerMenu;
     ConstraintLayout cornerMenuClose, cornerMenuWhole;
@@ -35,6 +55,7 @@ public class GPSMap extends AppCompatActivity {
     LinearLayout GeofenceSettings, CancelSaveButtons;
     ImageView decreaseRadius, increaseRadius;
     TextView radius;
+    Integer geofenceRadius = 5, storedGeofenceRadius = 5;
     CardView cancelGeofence, saveGeofence;
 
     private enum Page{
@@ -68,6 +89,8 @@ public class GPSMap extends AppCompatActivity {
         cancelGeofence = findViewById(R.id.cancel_geofence);
         saveGeofence = findViewById(R.id.save_geofence);
 
+        radius.setText(String.valueOf(geofenceRadius));
+
         findViewById(R.id.open_menu).setOnClickListener(v -> {
             PopupMenu popup = new PopupMenu(GPSMap.this, v);
             MenuInflater inflater = popup.getMenuInflater();
@@ -95,6 +118,63 @@ public class GPSMap extends AppCompatActivity {
             cornerMenu.setVisibility(View.GONE);
             cornerMenuClose.setVisibility(View.GONE);
         });
+
+        cancelGeofence.setOnClickListener(view -> showGPSMap());
+        saveGeofence.setOnClickListener(view -> saveAndReinitializeGeofence());
+        decreaseRadius.setOnClickListener(view -> {
+            if (geofenceRadius > 1){
+                geofenceRadius--;
+                radius.setText(String.valueOf(geofenceRadius));
+                if (geofenceRadius == 99) {
+                    TypedValue typedValue = new TypedValue();
+                    GPSMap.this.getTheme().resolveAttribute(R.attr.text, typedValue, true);
+                    increaseRadius.setImageTintList(ContextCompat.getColorStateList(GPSMap.this, typedValue.data));
+                }
+            }
+            if (geofenceRadius == 1){
+                decreaseRadius.setImageTintList(ContextCompat.getColorStateList(GPSMap.this, R.color.grey));
+            }
+        });
+        increaseRadius.setOnClickListener(view -> {
+            if (geofenceRadius < 100){
+                geofenceRadius++;
+                radius.setText(String.valueOf(geofenceRadius));
+                if (geofenceRadius == 2) {
+                    TypedValue typedValue = new TypedValue();
+                    GPSMap.this.getTheme().resolveAttribute(R.attr.text, typedValue, true);
+                    decreaseRadius.setImageTintList(ContextCompat.getColorStateList(GPSMap.this, typedValue.data));
+                }
+            }
+            if (geofenceRadius == 100){
+                increaseRadius.setImageTintList(ContextCompat.getColorStateList(GPSMap.this, R.color.grey));
+            }
+        });
+        mapView.onCreate(savedInstanceState);
+        mapView.onResume();
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull GoogleMap googleMap) {
+                GPSMap.this.googleMap = googleMap;
+                GPSMap.this.googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+                if (ContextCompat.checkSelfPermission(GPSMap.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        && ContextCompat.checkSelfPermission(GPSMap.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // Request permissions if not granted
+                    ActivityCompat.requestPermissions(GPSMap.this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                            PERMISSION_REQUEST_LOCATION);
+                } else {
+                    viewLatLng = getPhoneLocation();
+                    if (viewLatLng!=null) onSetUserView(viewLatLng);
+                }
+            }
+        });
+    }
+
+    private void saveAndReinitializeGeofence(){
+        storedGeofenceRadius = geofenceRadius;
+        //store new value
+        showGPSMap();
     }
 
     private void showEdit(){
@@ -121,5 +201,76 @@ public class GPSMap extends AppCompatActivity {
         } else {
             showGPSMap();
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_LOCATION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                viewLatLng = getPhoneLocation();
+                if (viewLatLng!=null) onSetUserView(viewLatLng);
+            }
+        }
+    }
+
+    private void onSetUserView(LatLng latLng){
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+    }
+
+    @SuppressLint("MissingPermission")
+    @Nullable
+    private LatLng getPhoneLocation() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            android.location.Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            final double[] latitude = new double[1];
+            final double[] longitude = new double[1];
+            final CountDownLatch latch = new CountDownLatch(1);
+
+            if (lastKnownLocation != null) {
+                latitude[0] = lastKnownLocation.getLatitude();
+                longitude[0] = lastKnownLocation.getLongitude();
+                return new LatLng(latitude[0], longitude[0]);
+            } else {
+                locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, new LocationListener() {
+                    @Override
+                    public void onLocationChanged(@NonNull android.location.Location location) {
+                        latitude[0] = location.getLatitude();
+                        longitude[0] = location.getLongitude();
+                        latch.countDown();
+                    }
+                }, null);
+                try {
+                    latch.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return new LatLng(latitude[0], longitude[0]);
+            }
+        } else {
+            Toast.makeText(GPSMap.this, "Please turn on GPS Location.", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
     }
 }
