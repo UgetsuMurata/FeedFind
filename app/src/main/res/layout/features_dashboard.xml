@@ -166,7 +166,46 @@
                     app:tint="?text" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/features_item_row"
+                    android:clipToPadding="false">
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </ScrollView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="FloatingActionButton"
+                app:backgroundTint="#DDACF5"
+                app:elevation="20dp"
+                app:maxImageSize="35dp"
+                app:srcCompat="@drawable/ic_plus" />
+
+        </RelativeLayout>
+
     </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
