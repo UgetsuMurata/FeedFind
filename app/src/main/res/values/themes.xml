@@ -16,7 +16,9 @@
         <item name="background">@color/background_day</item>
         <item name="backgroundOverlay">@color/background_overlay_day</item>
         <item name="emphasis">@color/emphasis_day</item>
+        <item name="emphasisStroke">@color/emphasis_stroke_day</item>
         <item name="text">@color/black</item>
+        <item name="reverseText">@color/white</item>
         <item name="toolbarStyle">@color/topbar_day</item>
     </style>
 </resources>

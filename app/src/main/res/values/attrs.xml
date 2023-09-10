@@ -2,7 +2,9 @@
 <resources>
     <attr name="backgroundOverlay" format="reference"/>
     <attr name="emphasis" format="reference"/>
+    <attr name="emphasisStroke" format="reference"/>
     <attr name="text" format="reference"/>
+    <attr name="reverseText" format="reference"/>
     <declare-styleable name="CornerCardView">
         <attr name="topLeftCornerRadius" format="dimension" />
         <attr name="topRightCornerRadius" format="dimension" />
