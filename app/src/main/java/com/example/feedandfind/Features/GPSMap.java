@@ -4,13 +4,17 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -121,33 +125,48 @@ public class GPSMap extends AppCompatActivity {
 
         cancelGeofence.setOnClickListener(view -> showGPSMap());
         saveGeofence.setOnClickListener(view -> saveAndReinitializeGeofence());
+        Handler handler = new Handler();
+        Runnable runnableIncrease = new Runnable() {
+            @Override
+            public void run() {
+                handler.postDelayed(this, 100);
+                increaseRadius();
+            }
+        };
+        Runnable runnableDecrease = new Runnable() {
+            @Override
+            public void run() {
+                handler.postDelayed(this, 100);
+                decreaseRadius();
+            }
+        };
         decreaseRadius.setOnClickListener(view -> {
-            if (geofenceRadius > 1){
-                geofenceRadius--;
-                radius.setText(String.valueOf(geofenceRadius));
-                if (geofenceRadius == 99) {
-                    TypedValue typedValue = new TypedValue();
-                    GPSMap.this.getTheme().resolveAttribute(R.attr.text, typedValue, true);
-                    increaseRadius.setImageTintList(ContextCompat.getColorStateList(GPSMap.this, typedValue.data));
-                }
-            }
-            if (geofenceRadius == 1){
-                decreaseRadius.setImageTintList(ContextCompat.getColorStateList(GPSMap.this, R.color.grey));
-            }
+            decreaseRadius();
+            handler.removeCallbacks(runnableDecrease);
         });
         increaseRadius.setOnClickListener(view -> {
-            if (geofenceRadius < 100){
-                geofenceRadius++;
-                radius.setText(String.valueOf(geofenceRadius));
-                if (geofenceRadius == 2) {
-                    TypedValue typedValue = new TypedValue();
-                    GPSMap.this.getTheme().resolveAttribute(R.attr.text, typedValue, true);
-                    decreaseRadius.setImageTintList(ContextCompat.getColorStateList(GPSMap.this, typedValue.data));
-                }
+            increaseRadius();
+            handler.removeCallbacks(runnableIncrease);
+        });
+        decreaseRadius.setOnLongClickListener(view -> {
+            handler.postDelayed(runnableDecrease, 0);
+            return true;
+        });
+        increaseRadius.setOnLongClickListener(view -> {
+            handler.postDelayed(runnableIncrease, 0);
+            return true;
+        });
+        decreaseRadius.setOnTouchListener((view, motionEvent) -> {
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                handler.removeCallbacks(runnableDecrease);
             }
-            if (geofenceRadius == 100){
-                increaseRadius.setImageTintList(ContextCompat.getColorStateList(GPSMap.this, R.color.grey));
+            return false;
+        });
+        increaseRadius.setOnTouchListener((view, motionEvent) -> {
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                handler.removeCallbacks(runnableIncrease);
             }
+            return false;
         });
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
@@ -169,6 +188,35 @@ public class GPSMap extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void increaseRadius(){
+        if (geofenceRadius < 100){
+            geofenceRadius++;
+            radius.setText(String.valueOf(geofenceRadius));
+            if (geofenceRadius == 2) {
+                TypedValue typedValue = new TypedValue();
+                GPSMap.this.getTheme().resolveAttribute(R.attr.text, typedValue, true);
+                decreaseRadius.setImageTintList(ColorStateList.valueOf(typedValue.data));
+            }
+        }
+        if (geofenceRadius == 100){
+            increaseRadius.setImageTintList(ContextCompat.getColorStateList(GPSMap.this, R.color.grey));
+        }
+    }
+    private void decreaseRadius(){
+        if (geofenceRadius > 1){
+            geofenceRadius--;
+            radius.setText(String.valueOf(geofenceRadius));
+            if (geofenceRadius == 99) {
+                TypedValue typedValue = new TypedValue();
+                GPSMap.this.getTheme().resolveAttribute(R.attr.text, typedValue, true);
+                increaseRadius.setImageTintList(ContextCompat.getColorStateList(GPSMap.this, typedValue.data));
+            }
+        }
+        if (geofenceRadius == 1){
+            decreaseRadius.setImageTintList(ContextCompat.getColorStateList(GPSMap.this, R.color.grey));
+        }
     }
 
     private void saveAndReinitializeGeofence(){
@@ -217,14 +265,13 @@ public class GPSMap extends AppCompatActivity {
     private void onSetUserView(LatLng latLng){
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
     }
-
     @SuppressLint("MissingPermission")
     @Nullable
     private LatLng getPhoneLocation() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            android.location.Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
             final double[] latitude = new double[1];
             final double[] longitude = new double[1];
@@ -233,11 +280,12 @@ public class GPSMap extends AppCompatActivity {
             if (lastKnownLocation != null) {
                 latitude[0] = lastKnownLocation.getLatitude();
                 longitude[0] = lastKnownLocation.getLongitude();
+                Log.d("GPS", "I GOT HERE: "+latitude[0]+", "+longitude[0]);
                 return new LatLng(latitude[0], longitude[0]);
             } else {
                 locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, new LocationListener() {
                     @Override
-                    public void onLocationChanged(@NonNull android.location.Location location) {
+                    public void onLocationChanged(@NonNull Location location) {
                         latitude[0] = location.getLatitude();
                         longitude[0] = location.getLongitude();
                         latch.countDown();
@@ -248,6 +296,7 @@ public class GPSMap extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                Log.d("GPS", "I GOT HERE 2: "+latitude[0]+", "+longitude[0]);
                 return new LatLng(latitude[0], longitude[0]);
             }
         } else {
@@ -261,13 +310,11 @@ public class GPSMap extends AppCompatActivity {
         super.onPause();
         mapView.onPause();
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
     }
-
     @Override
     public void onLowMemory() {
         super.onLowMemory();
