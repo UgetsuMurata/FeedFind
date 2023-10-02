@@ -1,6 +1,7 @@
 package com.example.feedandfind.Features;
 
 import android.os.Bundle;
+import android.view.Window;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,7 @@ import com.example.feedandfind.Adapter.RecordAdapter;
 import com.example.feedandfind.Model.RecordModel;
 import com.example.feedandfind.NavigationMenu.NavigationDrawer;
 import com.example.feedandfind.R;
+import com.example.feedandfind.databinding.ActivityNavigationDrawerBinding;
 import com.example.feedandfind.databinding.FeaturesDashboardBinding;
 
 import java.util.ArrayList;
