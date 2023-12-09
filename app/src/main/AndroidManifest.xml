@@ -16,28 +16,28 @@
         android:theme="@style/Theme.FeedAndFind"
         tools:targetApi="31">
         <activity
-            android:name=".PetsAdd"
+            android:name=".Features.Pets.PetsAdd"
             android:exported="false" />
         <activity
-            android:name=".PetsEdit"
+            android:name=".Features.Pets.PetsEdit"
             android:exported="false" />
         <activity
-            android:name=".PetsInfo"
+            android:name=".Features.Pets.PetsInfo"
             android:exported="false" />
         <activity
-            android:name=".Reports"
+            android:name=".Features.Reports"
             android:exported="false" />
         <activity
-            android:name=".FeederDietSetter"
+            android:name=".Features.Feeder.FeederDietSetter"
             android:exported="false" />
         <activity
-            android:name=".FeederLogs"
+            android:name=".Features.Feeder.FeederLogs"
             android:exported="false" />
         <activity
-            android:name=".FeederGeofenceSetting"
+            android:name=".Features.Feeder.FeederGeofenceSetting"
             android:exported="false" />
         <activity
-            android:name=".FeederConfiguration"
+            android:name=".Features.Feeder.FeederConfiguration"
             android:exported="false" />
 
         <meta-data

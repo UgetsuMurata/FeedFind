@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,9 +15,12 @@ import com.example.feedandfind.Application.FeedAndFind;
 import com.example.feedandfind.DataManager.FirebaseData;
 import com.example.feedandfind.Features.Feeder.FeederConfiguration;
 import com.example.feedandfind.Features.Finder.GPSMap;
+import com.example.feedandfind.Features.Pets.PetsAdd;
 import com.example.feedandfind.Items.PetInformation;
 import com.example.feedandfind.Model.RecordModel;
 import com.example.feedandfind.R;
+import com.google.android.gms.maps.model.Dash;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
@@ -30,7 +34,9 @@ public class Dashboard extends AppCompatActivity {
     RecyclerView recyclerView;
     RecordAdapter recordAdapter;
     LinearLayoutManager linearLayoutManager;
+    LinearLayout noPet;
     FirebaseData firebaseData;
+    FloatingActionButton addPet;
 
     // Navigation
     ImageView gpsIcon, feederIcon, reportIcon;
@@ -44,6 +50,8 @@ public class Dashboard extends AppCompatActivity {
         gpsIcon = findViewById(R.id.gps_icon);
         feederIcon = findViewById(R.id.feeder_icon);
         reportIcon = findViewById(R.id.report_icon);
+        noPet = findViewById(R.id.no_pets);
+        addPet = findViewById(R.id.fab);
 
         firebaseData  = new FirebaseData();
         feedAndFind = FeedAndFind.getInstance();
@@ -66,15 +74,21 @@ public class Dashboard extends AppCompatActivity {
             Intent intent = new Intent(Dashboard.this, Reports.class);
             startActivity(intent);
         });
+        addPet.setOnClickListener(view -> {
+            Intent intent = new Intent(Dashboard.this, PetsAdd.class);
+            startActivity(intent);
+        });
     }
 
     private void generate_item(){
         List<PetInformation> petInformationList = feedAndFind.getPetInformationList();
         if (petInformationList.size() > 0) {
+            noPet.setVisibility(View.GONE);
             recordAdapter = new RecordAdapter(this, petInformationList);
             recyclerView.setAdapter(recordAdapter);
         } else {
             //display an empty message.
+            noPet.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -158,10 +158,29 @@
                     android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/features_item_row"
-                    android:clipToPadding="false">
-                </androidx.recyclerview.widget.RecyclerView>
-
+                    android:clipToPadding="false"/>
             </ScrollView>
+            <LinearLayout
+                android:id="@+id/no_pets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="50dp"
+                android:visibility="gone">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:src="@drawable/dog_paw"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="You have no pets saved"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/fredoka"
+                    />
+            </LinearLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
