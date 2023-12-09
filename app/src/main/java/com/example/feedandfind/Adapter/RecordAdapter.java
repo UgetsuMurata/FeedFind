@@ -11,17 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.feedandfind.Items.PetInformation;
 import com.example.feedandfind.Model.RecordModel;
 import com.example.feedandfind.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordHolder> {
 
    Context context;
-   private final ArrayList<RecordModel> recordsList;
+   private final List<PetInformation> recordsList;
 
-    public RecordAdapter(Context context, ArrayList<RecordModel> recordsList) {
+    public RecordAdapter(Context context, List<PetInformation> recordsList) {
         this.context = context;
         this.recordsList = recordsList;
     }
@@ -36,19 +37,13 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordHold
     @Override
     public void onBindViewHolder(@NonNull RecordAdapter.RecordHolder holder, int position) {
 
-        RecordModel model = recordsList.get(position);
-        String image = model.getImage();
+        PetInformation model = recordsList.get(position);
 
         //Glide.with(context).load(recordsList.get(position).getImage()).into(holder.petPic);
         holder.petName.setText(recordsList.get(position).getName());
         holder.petAge.setText(recordsList.get(position).getAge());
 
-        if (image.equals("null")) {
-            holder.petPic.setImageResource(R.drawable.pet_profile_pic);
-        } else {
-            holder.petPic.setImageURI(Uri.parse(image));
-        }
-
+        holder.petPic.setImageResource(R.drawable.pet_profile_pic);
     }
 
     @Override

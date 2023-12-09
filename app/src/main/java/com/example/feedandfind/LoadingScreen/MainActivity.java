@@ -6,13 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.feedandfind.Application.FeedAndFind;
 import com.example.feedandfind.CustomViews.PetLoadingBar;
+import com.example.feedandfind.DataManager.FirebaseData;
 import com.example.feedandfind.Features.Dashboard;
+import com.example.feedandfind.Items.PetInformation;
 import com.example.feedandfind.R;
+import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     PetLoadingBar display;
     TextView label;
 
+    FirebaseData firebaseData;
+    FeedAndFind feedAndFind;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
         display = findViewById(R.id.loading_display);
         label = findViewById(R.id.loading_label);
 
-        final String Process1 = "Retrieving Resources";
+        firebaseData = new FirebaseData();
+        feedAndFind = FeedAndFind.getInstance();
+
+        final String Process1 = "Retrieving All Pets.";
         final String Process2 = "Processing";
         final String Process3 = "Another Sample Loading";
 
@@ -69,7 +82,62 @@ public class MainActivity extends AppCompatActivity {
 
     private void Process1(){
         long timeStarted = System.currentTimeMillis();
-        //PROCESS 1
+        CompletableFuture<Void> future = new CompletableFuture<>();
+        List<PetInformation> petInformationList = new ArrayList<>();
+        firebaseData.retrieveData(this, "Users/"+feedAndFind.APP_CODE+"/PetFeederQrCodes", new FirebaseData.FirebaseDataCallback() {
+            @Override
+            public void onDataReceived(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    PetInformation petInformation = new PetInformation();
+                    petInformation.setKey(ds.getKey());
+                    Object value = ds.child("name").getValue();
+                    if (value != null){
+                        petInformation.setName(value.toString());
+                    }
+                    value = ds.child("age").getValue();
+                    if (value != null){
+                        petInformation.setAge(value.toString());
+                    }
+                    value = ds.child("birthday").getValue();
+                    if (value != null){
+                        petInformation.setBirthday(value.toString());
+                    }
+                    value = ds.child("weight").getValue();
+                    if (value != null){
+                        petInformation.setWeight(value.toString());
+                    }
+                    value = ds.child("sex").getValue();
+                    if (value != null){
+                        petInformation.setSex(value.toString());
+                    }
+                    value = ds.child("allergies").getValue();
+                    if (value != null){
+                        petInformation.setAllergies(value.toString());
+                    }
+                    value = ds.child("medication").getValue();
+                    if (value != null){
+                        petInformation.setMedication(value.toString());
+                    }
+                    value = ds.child("vetName").getValue();
+                    if (value != null){
+                        petInformation.setVetName(value.toString());
+                    }
+                    value = ds.child("phone").getValue();
+                    if (value != null){
+                        petInformation.setPhone(value.toString());
+                    }
+                    petInformationList.add(petInformation);
+                }
+                future.complete(null);
+            }
+        });
+
+        try {
+            future.get(); // This will block until the callback is done
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        feedAndFind.setPetInformationList(petInformationList);
         while (System.currentTimeMillis()-timeStarted<1000);
     }
     private void Process2(){
