@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?background"
-    tools:context=".Features.GPSMap">
+    tools:context=".Features.Finder.GPSMap">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/custom_toolbar"
@@ -136,142 +136,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="20dp"
-                android:layout_marginStart="20dp">
-
-                <TextView
-                    android:id="@+id/pet_outside_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/cabin"
-                    android:text="No. of Pets Outside:"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/pet_outside_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/cabin"
-                    android:text="1"
-                    android:layout_marginStart="5dp"
-                    android:textColor="@color/red"
-                    android:textSize="12sp"/>
-            </LinearLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/corner_menu_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="40dp"
-                android:minWidth="40dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-                <!--Menu Minimizer-->
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/corner_menu_close_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@id/corner_menu_button"
-                    app:layout_constraintEnd_toEndOf="parent">
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/customview_selectiveroundcorner2"
-                        app:backgroundTint="?background"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="X"
-                        android:textColor="?emphasis"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                <!--Menu-->
-                <ImageView
-                    android:id="@+id/corner_menu_button"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/customview_selectiveroundcorner"
-                    app:backgroundTint="?background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <LinearLayout
-                    android:id="@+id/corner_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintTop_toTopOf="@id/corner_menu_button"
-                    app:layout_constraintBottom_toBottomOf="@id/corner_menu_button"
-                    app:layout_constraintStart_toStartOf="@id/corner_menu_button"
-                    app:layout_constraintEnd_toEndOf="@id/corner_menu_button"
-                    android:layout_margin="10dp"
-                    android:animateLayoutChanges="true">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:id="@+id/focus_geofence"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            app:srcCompat="@drawable/geofence"
-                            android:layout_marginEnd="10dp"/>
-                        <ImageView
-                            android:id="@+id/focus_phone"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            app:srcCompat="@drawable/phone"
-                            android:layout_marginEnd="10dp"
-                            app:tint="?emphasis"/>
-                        <ImageView
-                            android:id="@+id/focus_pets"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            app:srcCompat="@drawable/dog_paw"
-                            android:layout_marginEnd="10dp"/>
-                    </LinearLayout>
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/option_satellite_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Satellite View"
-                        android:fontFamily="@font/cabin"
-                        app:switchPadding="10dp"/>
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/option_geofence"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Geofence"
-                        android:checked="true"
-                        android:fontFamily="@font/cabin"
-                        app:switchPadding="10dp"/>
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/option_pet_names"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Pet Names"
-                        android:fontFamily="@font/cabin"
-                        app:switchPadding="10dp"/>
-
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"/>
     </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout

@@ -1,4 +1,4 @@
-package com.example.feedandfind.Features;
+package com.example.feedandfind.Features.Finder;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -26,7 +26,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -36,7 +35,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -45,15 +43,8 @@ public class GPSMap extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_LOCATION = 1;
     LatLng viewLatLng;
 
-    LinearLayout cornerMenu;
-    ConstraintLayout cornerMenuClose, cornerMenuWhole;
     MapView mapView;
     GoogleMap googleMap;
-    TextView petOutsideLabel, petOutsideCount;
-
-    ImageView focusGeofence, focusPhone, focusPets;
-    SwitchMaterial optionSatelliteView, optionGeofence, optionPetNames;
-
 
     //Layouts for changing geofence
     LinearLayout GeofenceSettings, CancelSaveButtons;
@@ -71,19 +62,6 @@ public class GPSMap extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.features_gpsmap);
-
-        cornerMenu = findViewById(R.id.corner_menu);
-        cornerMenuClose = findViewById(R.id.corner_menu_close_button);
-        cornerMenuWhole = findViewById(R.id.corner_menu_view);
-        mapView = findViewById(R.id.map_view);
-        petOutsideLabel = findViewById(R.id.pet_outside_label);
-        petOutsideCount = findViewById(R.id.pet_outside_count);
-        focusGeofence = findViewById(R.id.focus_geofence);
-        focusPhone = findViewById(R.id.focus_phone);
-        focusPets = findViewById(R.id.focus_pets);
-        optionSatelliteView = findViewById(R.id.option_satellite_view);
-        optionGeofence = findViewById(R.id.option_geofence);
-        optionPetNames = findViewById(R.id.option_pet_names);
 
         GeofenceSettings = findViewById(R.id.geofence_settings);
         CancelSaveButtons = findViewById(R.id.cancel_save_buttons);
@@ -110,17 +88,6 @@ public class GPSMap extends AppCompatActivity {
                     return false;
                 }
             });
-        });
-
-        cornerMenu.setVisibility(View.GONE);
-        cornerMenuClose.setVisibility(View.GONE);
-        findViewById(R.id.corner_menu_button).setOnClickListener(view -> {
-            cornerMenu.setVisibility(View.VISIBLE);
-            cornerMenuClose.setVisibility(View.VISIBLE);
-        });
-        cornerMenuClose.setOnClickListener(view -> {
-            cornerMenu.setVisibility(View.GONE);
-            cornerMenuClose.setVisibility(View.GONE);
         });
 
         cancelGeofence.setOnClickListener(view -> showGPSMap());
@@ -168,6 +135,7 @@ public class GPSMap extends AppCompatActivity {
             }
             return false;
         });
+        if (mapView == null) return;
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
         mapView.getMapAsync(new OnMapReadyCallback() {
@@ -228,17 +196,11 @@ public class GPSMap extends AppCompatActivity {
     private void showEdit(){
         GeofenceSettings.setVisibility(View.VISIBLE);
         CancelSaveButtons.setVisibility(View.VISIBLE);
-        cornerMenuWhole.setVisibility(View.GONE);
-        petOutsideLabel.setVisibility(View.GONE);
-        petOutsideCount.setVisibility(View.GONE);
         page = Page.editGeofence;
     }
     private void showGPSMap(){
         GeofenceSettings.setVisibility(View.GONE);
         CancelSaveButtons.setVisibility(View.GONE);
-        cornerMenuWhole.setVisibility(View.VISIBLE);
-        petOutsideLabel.setVisibility(View.VISIBLE);
-        petOutsideCount.setVisibility(View.VISIBLE);
         page = Page.gpsMap;
     }
 
@@ -308,16 +270,22 @@ public class GPSMap extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        mapView.onPause();
+        if (mapView != null) {
+            mapView.onPause();
+        }
     }
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mapView.onDestroy();
+        if (mapView != null) {
+            mapView.onDestroy();
+        }
     }
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        mapView.onLowMemory();
+        if (mapView != null) {
+            mapView.onLowMemory();
+        }
     }
 }
