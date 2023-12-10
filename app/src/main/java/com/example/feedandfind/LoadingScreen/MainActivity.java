@@ -90,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     PetInformation petInformation = new PetInformation();
                     petInformation.setKey(ds.getKey());
-                    Object value = ds.child("name").getValue();
+                    Object value = ds.child("image").getValue();
+                    if (value != null){
+                        petInformation.setImage((Long) value);
+                    }
+                    value = ds.child("name").getValue();
                     if (value != null){
                         petInformation.setName(value.toString());
-                    }
-                    value = ds.child("age").getValue();
-                    if (value != null){
-                        petInformation.setAge(value.toString());
                     }
                     value = ds.child("birthday").getValue();
                     if (value != null){
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     if (value != null){
                         petInformation.setVetName(value.toString());
                     }
-                    value = ds.child("phone").getValue();
+                    value = ds.child("vetPhoneNumber").getValue();
                     if (value != null){
                         petInformation.setPhone(value.toString());
                     }

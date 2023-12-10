@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.feedandfind.Items.PetInformation;
@@ -37,13 +38,11 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordHold
     @Override
     public void onBindViewHolder(@NonNull RecordAdapter.RecordHolder holder, int position) {
 
-        PetInformation model = recordsList.get(position);
-
-        //Glide.with(context).load(recordsList.get(position).getImage()).into(holder.petPic);
+        holder.petPic.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(),
+                Integer.parseInt(String.valueOf(recordsList.get(position).getImage())),
+                context.getTheme()));
         holder.petName.setText(recordsList.get(position).getName());
         holder.petAge.setText(recordsList.get(position).getAge());
-
-        holder.petPic.setImageResource(R.drawable.pet_profile_pic);
     }
 
     @Override

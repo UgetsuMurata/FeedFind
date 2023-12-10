@@ -180,6 +180,20 @@ public class PetsAdd extends AppCompatActivity {
             values.put("vetPhoneNumber", vetPhoneNumber.getText() != null ? vetPhoneNumber.getText().toString() : "");
             firebaseData.addValues("Users/"+feedAndFind.APP_CODE+"/PetFeederQrCodes/"+CollarKey, values);
             Toast.makeText(this, "New pet added!", Toast.LENGTH_SHORT).show();
+
+            PetInformation petInformation = new PetInformation();
+            petInformation.setKey(CollarKey);
+            petInformation.setImage(Long.parseLong(String.valueOf(currentImage)));
+            petInformation.setName(Objects.requireNonNull(petName.getText()).toString());
+            petInformation.setBirthday(Objects.requireNonNull(petBirthday.getText()).toString());
+            petInformation.setWeight(petWeight.getText() != null ? petWeight.getText().toString() : "");
+            petInformation.setSex(petSex.getText() != null ? petSex.getText().toString() : "");
+            petInformation.setAllergies(petAllergies.getText() != null ? petAllergies.getText().toString() : "");
+            petInformation.setMedication(petMedication.getText() != null ? petMedication.getText().toString() : "");
+            petInformation.setVetName(vetName.getText() != null ? vetName.getText().toString() : "");
+            petInformation.setPhone(vetPhoneNumber.getText() != null ? vetPhoneNumber.getText().toString() : "");
+            feedAndFind.addPetInformationList(petInformation);
+
             getOnBackPressedDispatcher().onBackPressed();
         }
     }

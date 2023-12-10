@@ -91,4 +91,10 @@ public class Dashboard extends AppCompatActivity {
             noPet.setVisibility(View.VISIBLE);
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        generate_item();
+    }
 }

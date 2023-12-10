@@ -44,6 +44,12 @@ public class FeedAndFind extends Application {
         return petInformationList;
     }
 
+    public void addPetInformationList(PetInformation petInformation){
+        if (petInformationList != null){
+            petInformationList.add(petInformation);
+        }
+    }
+
     public void setPetInformationList(List<PetInformation> petInformationList) {
         this.petInformationList = petInformationList;
     }

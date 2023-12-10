@@ -81,10 +81,10 @@ public class GPSMap extends AppCompatActivity {
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
-                    if (menuItem.getItemId() == R.id.edit_geofence){
-                        showEdit();
-                        return true;
-                    }
+//                    if (menuItem.getItemId() == R.id.edit_geofence){
+//                        showEdit();
+//                        return true;
+//                    }
                     return false;
                 }
             });
