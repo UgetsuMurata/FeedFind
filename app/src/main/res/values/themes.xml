@@ -21,4 +21,9 @@
         <item name="reverseText">@color/white</item>
         <item name="toolbarStyle">@color/topbar_day</item>
     </style>
+
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+    </style>
 </resources>

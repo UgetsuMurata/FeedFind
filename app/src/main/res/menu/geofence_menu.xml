@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/edit_geofence"
-        android:title="Edit Geofence"/>
+        android:id="@+id/Feeder_Configuration_General"
+        android:icon="@drawable/home"
+        android:title="Feeder Configuration (General)" />
+    <item
+        android:id="@+id/Feeder_Configuration_General_Geofence"
+        android:icon="@drawable/search"
+        android:title="Feeder Configuration (General - Geofence)" />
+    <item
+        android:id="@+id/Feeder_Configuration_Individual_Diet"
+        android:icon="@drawable/settings"
+        android:title="Feeder Configuration (Individual - Diet)" />
+
+    <item
+        android:id="@+id/Feeder_Configuration_General_Logs"
+        android:icon="@drawable/person"
+        android:title="Feeder Configuration (General - Logs)" />
 </menu>

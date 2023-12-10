@@ -9,7 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FFFF0000</color>
     <color name="grey">#808080</color>
-    A53ED7
     <color name="background_night">#FF333333</color>
     <color name="background_day">#FFFFF1E6</color>
     <color name="background_overlay_day">#FFE7DDB6</color>
@@ -22,5 +21,9 @@
     <color name="topbar_day">#FFE7DDB6</color>
     <color name="feedconfig_setbtn">#A53ED7</color>
     <color name="feedconfig_cancelbtn">#BEBEBE</color>
-    BEBEBE
+    <color name="lavender">#8692f7</color>
+    <color name="bottom_nav_drawer">#E7DDB6</color>
+
+
+
 </resources>
