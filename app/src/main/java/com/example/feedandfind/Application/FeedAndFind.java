@@ -10,6 +10,7 @@ import com.example.feedandfind.Items.PetInformation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class FeedAndFind extends Application {
@@ -48,6 +49,17 @@ public class FeedAndFind extends Application {
         if (petInformationList != null){
             petInformationList.add(petInformation);
         }
+    }
+
+    public void removePetInformationList(String collarKey){
+        PetInformation to_delete = null;
+        for (PetInformation petInformation : petInformationList){
+            if (Objects.equals(petInformation.getKey(), collarKey)){
+                to_delete = petInformation;
+                break;
+            }
+        }
+        petInformationList.remove(to_delete);
     }
 
     public void setPetInformationList(List<PetInformation> petInformationList) {

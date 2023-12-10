@@ -120,7 +120,13 @@ public class PetInformation {
         remainingDays %= 30;
 
         // Display the result (you can format it as per your needs)
-        return String.format("%d years, %d months, and %d days", years, months, remainingDays);
+        if (years > 0){
+            return String.format("%d year%s and %d month%s old", years, years>1?"s":"", months, months>1?"s":"");
+        }
+        if (months > 0){
+            return String.format("%d month%s and %d day%s old", months, months>1?"s":"", remainingDays, remainingDays>1?"s":"");
+        }
+        return String.format("%d day%s old", remainingDays, remainingDays>1?"s":"");
     }
 
     private Calendar parseDate(String dateString) {

@@ -84,10 +84,16 @@ public class Dashboard extends AppCompatActivity {
         List<PetInformation> petInformationList = feedAndFind.getPetInformationList();
         if (petInformationList.size() > 0) {
             noPet.setVisibility(View.GONE);
-            recordAdapter = new RecordAdapter(this, petInformationList);
+            recyclerView.setVisibility(View.VISIBLE);
+            recordAdapter = new RecordAdapter(this, petInformationList, new RecordAdapter.RecordCallback() {
+                @Override
+                public void onDeleteCallback() {
+                    onResume();
+                }
+            });
             recyclerView.setAdapter(recordAdapter);
         } else {
-            //display an empty message.
+            recyclerView.setVisibility(View.GONE);
             noPet.setVisibility(View.VISIBLE);
         }
     }
