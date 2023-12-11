@@ -4,6 +4,275 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?background"
     tools:context=".Features.Pets.PetsInfo">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/custom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?toolbarStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/toolbar_icon"
+                android:layout_width="31dp"
+                android:layout_height="29dp"
+                android:contentDescription="Location Icon"
+                android:src="@drawable/dog_paw"
+                app:tint="?text" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin"
+                android:text="Dog Name"
+                android:layout_marginLeft="10dp"
+                android:textColor="?text"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/open_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:paddingHorizontal="20dp"
+            android:contentDescription="Location Icon"
+            android:src="@drawable/menu"
+            app:tint="?text" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/custom_toolbar">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="20dp">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:cardCornerRadius="25dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="3dp"
+                app:cardElevation="10dp"
+                >
+                <ImageView
+                    android:id="@+id/pet_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/face1"/>
+            </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/pet_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:textSize="12sp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textColor="?text"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/pet_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="age"
+                android:textSize="12sp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"/>
+            <TextView
+                android:id="@+id/pet_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="birthday"
+                android:textSize="12sp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"/>
+            <TextView
+                android:id="@+id/pet_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="weight"
+                android:textSize="12sp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"/>
+            <TextView
+                android:id="@+id/pet_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="sex"
+                android:textSize="12sp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/header_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/cabin"
+                    android:text="Health Information"
+                    android:textColor="?text"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toLeftOf="@id/header_text"
+                    android:background="?text" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_toRightOf="@id/header_text"
+                    android:background="?text" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Allergies"
+                android:textSize="12sp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/pet_allergies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="allergies"
+                android:textSize="12sp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Medications"
+                android:textSize="12sp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/pet_medication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="medication"
+                android:textSize="12sp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/header_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/cabin"
+                    android:text="Veterinarian"
+                    android:textColor="?text"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toLeftOf="@id/header_text2"
+                    android:background="?text" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_toRightOf="@id/header_text2"
+                    android:background="?text" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="12sp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/vet_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="vet name"
+                android:textSize="12sp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contact Information"
+                android:textSize="12sp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/vet_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="phone number"
+                android:textSize="12sp"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_horizontal"
+                android:textColor="?text"/>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

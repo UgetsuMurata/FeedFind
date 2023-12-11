@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.feedandfind.Application.FeedAndFind;
 import com.example.feedandfind.DataManager.FirebaseData;
 import com.example.feedandfind.Features.Pets.PetsEdit;
+import com.example.feedandfind.Features.Pets.PetsInfo;
 import com.example.feedandfind.Items.PetInformation;
 import com.example.feedandfind.R;
 
@@ -60,6 +61,14 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordHold
 
         holder.showOptions.setOnClickListener(view ->
                 showPopupMenu(view, recordsList.get(position)));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, PetsInfo.class);
+                intent.putExtra("COLLAR_ID", recordsList.get(position).getKey());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -71,6 +80,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordHold
 
         ImageView petPic, showOptions;
         TextView petName, petAge;
+        View itemView;
 
         public RecordHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,7 +89,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordHold
             petName = itemView.findViewById(R.id.namePet);
             petAge = itemView.findViewById(R.id.petAge);
             showOptions = itemView.findViewById(R.id.show_options);
-
+            this.itemView = itemView;
         }
     }
 

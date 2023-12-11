@@ -30,7 +30,7 @@ import java.util.Random;
 
 public class PetsEdit extends AppCompatActivity {
 
-    CardView refreshImage, addPet;
+    CardView refreshImage, editPet;
     ImageView dogImage;
     TextInputEditText petName, petBirthday, petWeight, petSex, petAllergies, petMedication,
             vetName, vetPhoneNumber;
@@ -56,7 +56,7 @@ public class PetsEdit extends AppCompatActivity {
         petMedication = findViewById(R.id.pet_medication);
         vetName = findViewById(R.id.vet_name);
         vetPhoneNumber = findViewById(R.id.vet_phone_number);
-        addPet = findViewById(R.id.add_pet);
+        editPet = findViewById(R.id.add_pet);
 
         feedAndFind = FeedAndFind.getInstance();
 
@@ -79,6 +79,7 @@ public class PetsEdit extends AppCompatActivity {
         dogImage.setImageDrawable(ResourcesCompat.getDrawable(this.getResources(),
                 Math.toIntExact(petInformation.getImage()),
                 getTheme()));
+        currentImage = Math.toIntExact(petInformation.getImage());
         petName.setText(petInformation.getName());
         petBirthday.setText(petInformation.getBirthday());
         petWeight.setText(petInformation.getWeight());
@@ -97,7 +98,7 @@ public class PetsEdit extends AppCompatActivity {
                 }
             }
         });
-        addPet.setOnClickListener(view -> addPet());
+        editPet.setOnClickListener(view -> editPet());
     }
 
     private void refreshImage(){
@@ -155,7 +156,7 @@ public class PetsEdit extends AppCompatActivity {
         view.clearFocus();
     }
 
-    private void addPet(){
+    private void editPet(){
         if (verifyInformation()){
             FirebaseData firebaseData = new FirebaseData();
             Map<String, Object> values = new HashMap<>();
