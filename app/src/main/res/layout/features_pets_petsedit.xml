@@ -7,7 +7,7 @@
     android:background="?background"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".Features.Pets.PetsAdd">
+    tools:context=".Features.Pets.PetsEdit">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/custom_toolbar"
@@ -178,18 +178,19 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="5dp"
                 android:hint="Sex">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/pet_sex"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="none"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

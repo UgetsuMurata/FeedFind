@@ -6,6 +6,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -32,9 +34,9 @@ public class PetsEdit extends AppCompatActivity {
 
     CardView refreshImage, editPet;
     ImageView dogImage;
-    TextInputEditText petName, petBirthday, petWeight, petSex, petAllergies, petMedication,
+    TextInputEditText petName, petBirthday, petWeight, petAllergies, petMedication,
             vetName, vetPhoneNumber;
-
+    AutoCompleteTextView petSex;
     FeedAndFind feedAndFind;
     String CollarKey;
     PetInformation petInformation;
@@ -62,7 +64,7 @@ public class PetsEdit extends AppCompatActivity {
 
         CollarKey = getIntent().getStringExtra("COLLAR_ID");
 
-        Boolean found = false;
+        boolean found = false;
         for (PetInformation petInfo : feedAndFind.getPetInformationList()){
             if (petInfo.getKey().equals(CollarKey)){
                 petInformation = petInfo;
@@ -88,6 +90,10 @@ public class PetsEdit extends AppCompatActivity {
         petMedication.setText(petInformation.getMedication());
         vetName.setText(petInformation.getVetName());
         vetPhoneNumber.setText(petInformation.getPhone());
+
+        petSex.setAdapter(new ArrayAdapter<>(this,
+                R.layout.textinputlayout_dropdown_item,
+                this.getResources().getStringArray(R.array.sex)));
 
         refreshImage.setOnClickListener(view -> refreshImage());
         petBirthday.setOnFocusChangeListener(new View.OnFocusChangeListener() {

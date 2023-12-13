@@ -30,5 +30,11 @@
     <string name="image_view_pet_pfp">PetPicture</string>
     <string name="image_view_pet_image_refresh">image refresh</string>
 
+    <!--Sex Dropdown-->
+    <string-array name="sex">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
 
 </resources>

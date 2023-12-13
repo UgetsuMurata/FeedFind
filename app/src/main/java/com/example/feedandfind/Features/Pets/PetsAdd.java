@@ -4,8 +4,6 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
@@ -16,9 +14,10 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +28,6 @@ import com.example.feedandfind.DataManager.FirebaseData;
 import com.example.feedandfind.Items.PetInformation;
 import com.example.feedandfind.R;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,8 +42,9 @@ public class PetsAdd extends AppCompatActivity {
     CardView refreshImage, scanButton, addPet;
     ImageView dogImage;
     TextView scanStatus;
-    TextInputEditText petName, petBirthday, petWeight, petSex, petAllergies, petMedication,
+    TextInputEditText petName, petBirthday, petWeight, petAllergies, petMedication,
             vetName, vetPhoneNumber;
+    AutoCompleteTextView petSex;
     String CollarKey;
 
     FeedAndFind feedAndFind;
@@ -98,6 +97,9 @@ public class PetsAdd extends AppCompatActivity {
             }
         });
         addPet.setOnClickListener(view -> addPet());
+        petSex.setAdapter(new ArrayAdapter<>(this,
+                R.layout.textinputlayout_dropdown_item,
+                this.getResources().getStringArray(R.array.sex)));
     }
 
     private void refreshImage(){
