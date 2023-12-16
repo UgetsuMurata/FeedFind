@@ -2,19 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/Feeder_Configuration_General"
-        android:icon="@drawable/home"
+        android:icon="@drawable/feeder_logo"
         android:title="Feeder Configuration (General)" />
     <item
         android:id="@+id/Feeder_Configuration_General_Geofence"
-        android:icon="@drawable/search"
+        android:icon="@drawable/nav_geofence_icon"
         android:title="Feeder Configuration (General - Geofence)" />
-    <item
-        android:id="@+id/Feeder_Configuration_Individual_Diet"
-        android:icon="@drawable/settings"
-        android:title="Feeder Configuration (Individual - Diet)" />
 
     <item
         android:id="@+id/Feeder_Configuration_General_Logs"
-        android:icon="@drawable/person"
+        android:icon="@drawable/nav_logs_icon"
         android:title="Feeder Configuration (General - Logs)" />
 </menu>

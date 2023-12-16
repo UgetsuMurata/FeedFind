@@ -76,7 +76,7 @@ public class GPSMap extends AppCompatActivity {
         findViewById(R.id.open_menu).setOnClickListener(v -> {
             PopupMenu popup = new PopupMenu(GPSMap.this, v);
             MenuInflater inflater = popup.getMenuInflater();
-            inflater.inflate(R.menu.geofence_menu, popup.getMenu());
+            inflater.inflate(R.menu.bottom_menu, popup.getMenu());
             popup.show();
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override

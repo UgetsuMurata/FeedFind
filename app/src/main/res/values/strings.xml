@@ -37,4 +37,10 @@
         <item>Other</item>
     </string-array>
 
+
+
+
+    <!--feeder configuration-->
+    <string name="select">Consumption Frequency</string>
+
 </resources>

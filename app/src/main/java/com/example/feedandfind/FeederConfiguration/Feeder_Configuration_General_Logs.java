@@ -29,11 +29,6 @@ public class Feeder_Configuration_General_Logs extends AppCompatActivity {
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     finish();
                     return true;
-                case R.id.Feeder_Configuration_Individual_Diet:
-                    startActivity(new Intent(getApplicationContext(), Feeder_Configuration_Individual_Diet.class));
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                    finish();
-                    return true;
                 case R.id.Feeder_Configuration_General_Logs:
                     return true;
             }
