@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_day"
     tools:context=".FeederConfiguration.Feeder_Configuration_Individual_Diet">
 
 
@@ -88,7 +89,7 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="65dp"
         android:layout_marginTop="200dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -117,7 +118,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="80dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="270dp"
         app:boxBackgroundColor="#D9D9D9"
         android:textColorHint="@color/purple_500"
         android:hint="Time (First Meal)"
@@ -126,6 +127,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:id="@+id/first_meal"
             android:gravity="center"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -135,7 +137,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="340dp"
         app:boxBackgroundColor="#D9D9D9"
         android:textColorHint="@color/purple_500"
         android:paddingLeft="80dp"
@@ -146,6 +148,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:id="@+id/second_meal"
             android:gravity="center"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -156,7 +159,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="410dp"
         app:boxBackgroundColor="#D9D9D9"
         android:textColorHint="@color/purple_500"
         android:paddingLeft="80dp"
@@ -167,13 +170,14 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:id="@+id/third_meal"
             android:gravity="center"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/cancel_btn"
         android:layout_width="130dp"
         android:layout_height="60dp"
         android:layout_marginStart="41dp"
@@ -183,12 +187,12 @@
         android:background="@drawable/cancelbtn_feedconfig"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
+        app:layout_constraintEnd_toStartOf="@+id/save_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/save_btn"
         android:layout_width="130dp"
         android:layout_height="60dp"
         android:layout_marginTop="100dp"
