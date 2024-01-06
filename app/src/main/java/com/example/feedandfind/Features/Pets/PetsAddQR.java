@@ -70,7 +70,7 @@ public class PetsAddQR extends AppCompatActivity {
                     @Override
                     public void run() {
                         FirebaseData fd = new FirebaseData();
-                        fd.retrieveData(PetsAddQR.this, "PetCollar/", new FirebaseData.FirebaseDataCallback() {
+                        fd.retrieveData(PetsAddQR.this, "PetTracker/", new FirebaseData.FirebaseDataCallback() {
                             @Override
                             public void onDataReceived(DataSnapshot dataSnapshot) {
                                 boolean exists = false;

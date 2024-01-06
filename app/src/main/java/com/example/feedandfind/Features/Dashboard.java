@@ -13,17 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.feedandfind.Adapter.RecordAdapter;
 import com.example.feedandfind.Application.FeedAndFind;
 import com.example.feedandfind.DataManager.FirebaseData;
-import com.example.feedandfind.Features.Feeder.FeederConfiguration;
-import com.example.feedandfind.Features.Finder.GPSMap;
 import com.example.feedandfind.Features.Pets.PetsAdd;
+import com.example.feedandfind.FeederConfiguration.Feeder_Configuration_General;
 import com.example.feedandfind.Items.PetInformation;
-import com.example.feedandfind.Model.RecordModel;
 import com.example.feedandfind.R;
-import com.google.android.gms.maps.model.Dash;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -62,12 +57,8 @@ public class Dashboard extends AppCompatActivity {
 
         generate_item();
 
-        gpsIcon.setOnClickListener(view -> {
-            Intent intent = new Intent(Dashboard.this, GPSMap.class);
-            startActivity(intent);
-        });
         feederIcon.setOnClickListener(view -> {
-            Intent intent = new Intent(Dashboard.this, FeederConfiguration.class);
+            Intent intent = new Intent(Dashboard.this, Feeder_Configuration_General.class);
             startActivity(intent);
         });
         reportIcon.setOnClickListener(view -> {

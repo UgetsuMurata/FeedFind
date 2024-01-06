@@ -38,9 +38,13 @@
     </string-array>
 
 
-
-
     <!--feeder configuration-->
     <string name="select">Consumption Frequency</string>
+
+    <!--Pet tracker display-->
+    <string name="progress_text">----</string>
+    <string name="dogsitting">dog sitting</string>
+    <string name="high_temperature">high temperature</string>
+    <string name="icon_desc">paw icon</string>
 
 </resources>
