@@ -47,4 +47,18 @@
     <string name="high_temperature">high temperature</string>
     <string name="icon_desc">paw icon</string>
 
+    <!-- commentary on movements -->
+    <string name="steps_commentary_0">Your pet did not move today.</string>
+    <string name="steps_commentary_100">Your pet is very inactive today.</string>
+    <string name="steps_commentary_500">Your pet is active today!</string>
+    <string name="steps_commentary_750">Almost there in achieving your pet\'s goals!</string>
+    <string name="steps_commentary_1000">Your pet has achieved its goal! Congrats!</string>
+    <string name="steps_commentary_more">Woah! Reaching new heights!\nI recommend feeding it more today.</string>
+    <string name="steps">Steps</string>
+
+    <string name="your_pet_is_currently">Your pet is currently…</string>
+    <!--Pet movement types-->
+    <string name="movement_idle">Idle</string>
+    <string name="movement_walking">Walking</string>
+    <string name="movement_running">Running</string>
 </resources>

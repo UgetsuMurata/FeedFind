@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.feedandfind.Application.FeedAndFind;
 import com.example.feedandfind.DataManager.FirebaseData;
+import com.example.feedandfind.Features.Finder.FinderDataDisplay;
 import com.example.feedandfind.Items.PetInformation;
 import com.example.feedandfind.R;
 
@@ -65,14 +66,20 @@ public class PetsInfo extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                Intent intent;
                 switch (item.getItemId()) {
-                    case R.id.delete_pet:
+                    case (R.id.delete_pet):
                         firebaseData.removeData("Users/"+feedAndFind.APP_CODE+"/PetFeederQrCodes/"+CollarId);
                         feedAndFind.removePetInformationList(CollarId);
                         getOnBackPressedDispatcher().onBackPressed();
                         break;
-                    case R.id.edit_pet:
-                        Intent intent = new Intent(PetsInfo.this, PetsEdit.class);
+                    case (R.id.edit_pet):
+                        intent = new Intent(PetsInfo.this, PetsEdit.class);
+                        intent.putExtra("COLLAR_ID", CollarId);
+                        startActivity(intent);
+                        break;
+                    case (R.id.show_device):
+                        intent = new Intent(PetsInfo.this, FinderDataDisplay.class);
                         intent.putExtra("COLLAR_ID", CollarId);
                         startActivity(intent);
                         break;

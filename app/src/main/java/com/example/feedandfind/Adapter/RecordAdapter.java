@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.feedandfind.Application.FeedAndFind;
 import com.example.feedandfind.DataManager.FirebaseData;
+import com.example.feedandfind.Features.Finder.FinderDataDisplay;
 import com.example.feedandfind.Features.Pets.PetsEdit;
 import com.example.feedandfind.Features.Pets.PetsInfo;
 import com.example.feedandfind.Items.PetInformation;
@@ -100,14 +101,20 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordHold
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                Intent intent;
                 switch (item.getItemId()) {
-                    case R.id.delete_pet:
+                    case (R.id.delete_pet):
                         firebaseData.removeData("Users/"+feedAndFind.APP_CODE+"/PetFeederQrCodes/"+petInformation.getKey());
                         feedAndFind.removePetInformationList(petInformation.getKey());
                         recordCallback.onDeleteCallback();
                         break;
-                    case R.id.edit_pet:
-                        Intent intent = new Intent(context, PetsEdit.class);
+                    case (R.id.edit_pet):
+                        intent = new Intent(context, PetsEdit.class);
+                        intent.putExtra("COLLAR_ID", petInformation.getKey());
+                        context.startActivity(intent);
+                        break;
+                    case (R.id.show_device):
+                        intent = new Intent(context, FinderDataDisplay.class);
                         intent.putExtra("COLLAR_ID", petInformation.getKey());
                         context.startActivity(intent);
                         break;

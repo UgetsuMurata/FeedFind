@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/delete_pet"
-        android:title="Remove Pet" />
+        android:id="@+id/show_device"
+        android:title="Device Data" />
     <item
         android:id="@+id/edit_pet"
         android:title="Edit Pet" />
+    <item
+        android:id="@+id/delete_pet"
+        android:title="Remove Pet" />
 </menu>

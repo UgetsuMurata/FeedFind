@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="?background"
-    tools:context=".Features.Finder.PetTracker_Data_Display">
+    tools:context=".Features.Finder.FinderDataDisplay">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/custom_toolbar"
@@ -43,17 +43,47 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
-        <ImageView
-            android:id="@+id/open_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:paddingHorizontal="20dp"
-            android:contentDescription="Location Icon"
-            android:src="@drawable/menu"
-            app:tint="?text" />
     </androidx.appcompat.widget.Toolbar>
 
+    <LinearLayout
+        android:id="@+id/show_temp_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#f88"
+        android:padding="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/temp_high"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Temperature Warning!"
+                android:fontFamily="@font/fredoka"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/dismiss_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Dismiss"
+                android:gravity="center"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="It's very hot outside. Make sure to bring your pet to a cooler environment and give them lots of water."
+            android:fontFamily="@font/fredoka"
+            android:textSize="12sp"/>
+    </LinearLayout>
     <RelativeLayout
         android:id="@+id/progress_layout"
         android:layout_width="200dp"
@@ -69,6 +99,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/circle_shape"
             android:indeterminate="false"
+            android:max="1000"
             android:progressDrawable="@drawable/circle_progress_bar"
             android:textAlignment="center"/>
 
@@ -89,7 +120,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="@string/progress_text"
+            android:text="0"
             android:textColor="?text"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -102,7 +133,7 @@
             android:layout_below="@+id/progress_text"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="Steps"
+            android:text="@string/steps"
             android:textColor="?text"
             android:textSize="20sp"
             android:fontFamily="@font/cabin"/>
@@ -110,52 +141,49 @@
 
     </RelativeLayout>
 
+
     <TextView
         android:id="@+id/active_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="4dp"
-        android:text="Your pet is active today!"
+        android:fontFamily="@font/cabin"
+        android:gravity="center_horizontal"
+        android:text="@string/steps_commentary_0"
         android:textColor="#009688"
-        android:textSize="18sp"
-        android:fontFamily="@font/cabin"/>
+        android:textSize="18sp" />
 
-
-    <GridLayout
-        android:id="@+id/grid_layout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:rowCount="1"
-        android:columnCount="2"
-        android:layout_marginTop="20dp">
-
+        android:layout_marginTop="20dp"
+        android:weightSum="2"
+        android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="fill"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="3"
+            android:layout_height="match_parent"
             android:layout_margin="8dp"
-            app:cardCornerRadius="8dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="25dp"
             app:cardElevation="8dp">
 
             <LinearLayout
                 android:id="@+id/content_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:gravity="center"
+                android:padding="2dp"
                 android:layout_gravity="center_vertical|center_horizontal">
 
                 <ImageView
+                    android:id="@+id/pet_movement_icon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/dog_idle"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/dog_running"
                     android:contentDescription="@string/dogsitting" />
 
                 <LinearLayout
@@ -170,15 +198,17 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/cabin"
                         android:textColor="?text"
-                        android:text="Your pet is currently..."/>
+                        android:textSize="10sp"
+                        android:text="@string/your_pet_is_currently"/>
 
                     <TextView
+                        android:id="@+id/pet_movement"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Idle"
+                        android:text="@string/movement_idle"
                         android:fontFamily="@font/cabin"
                         android:textColor="?text"
-                        android:textSize="24sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -189,29 +219,27 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_layout2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_gravity="fill"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="3"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_margin="8dp"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="25dp"
             app:cardElevation="8dp"
             android:padding="8dp" >
 
             <LinearLayout
                 android:id="@+id/content_layout2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:gravity="center"
+                android:padding="2dp"
                 android:layout_gravity="center_vertical|center_horizontal">
 
                 <ImageView
+                    android:id="@+id/temperature_icon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/mid_temp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/temp_low"
                     android:contentDescription="@string/high_temperature" />
 
                 <LinearLayout
@@ -226,28 +254,30 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/cabin"
                         android:textColor="?text"
+                        android:textSize="10sp"
                         android:text="Ambient Temperature"/>
 
                     <TextView
+                        android:id="@+id/temperature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/cabin"
                         android:textColor="?text"
-                        android:text="31.0 °C"
-                        android:textSize="24sp"
+                        android:text="0.0°C"
+                        android:textSize="16sp"
                         android:textStyle="bold"/>
                 </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-    </GridLayout>
+    </LinearLayout>
 
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="180dp"
         android:layout_marginBottom="30dp"
         android:src="@drawable/dog_paw" />
 
