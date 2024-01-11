@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_day"
-    tools:context=".FeederConfiguration.Feeder_Configuration_Individual_Diet">
+    tools:context=".Features.Feeder.IndividualDiet">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

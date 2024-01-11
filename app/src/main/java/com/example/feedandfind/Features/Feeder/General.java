@@ -1,4 +1,4 @@
-package com.example.feedandfind.FeederConfiguration;
+package com.example.feedandfind.Features.Feeder;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.feedandfind.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Feeder_Configuration_General extends AppCompatActivity {
+public class General extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feeder_configuration_general);
+        setContentView(R.layout.features_feeder_general);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.Feeder_Configuration_General);
@@ -22,14 +22,14 @@ public class Feeder_Configuration_General extends AppCompatActivity {
                 case R.id.Feeder_Configuration_General:
                     return true;
                 case R.id.Feeder_Configuration_General_Geofence:
-                    startActivity(new Intent(getApplicationContext(), Feeder_Configuration_General_Geofence.class));
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    startActivity(new Intent(getApplicationContext(), Geofence.class));
+                    overridePendingTransition(0, 0);
                     finish();
                     return true;
 
                 case R.id.Feeder_Configuration_General_Logs:
-                    startActivity(new Intent(getApplicationContext(), Feeder_Configuration_General_Logs.class));
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    startActivity(new Intent(getApplicationContext(), Logs.class));
+                    overridePendingTransition(0, 0);
                     finish();
                     return true;
             }

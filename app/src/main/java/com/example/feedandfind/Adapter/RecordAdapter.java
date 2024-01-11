@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.feedandfind.Application.FeedAndFind;
 import com.example.feedandfind.DataManager.FirebaseData;
+import com.example.feedandfind.Features.Feeder.IndividualDiet;
 import com.example.feedandfind.Features.Finder.FinderDataDisplay;
 import com.example.feedandfind.Features.Pets.PetsEdit;
 import com.example.feedandfind.Features.Pets.PetsInfo;
@@ -115,6 +116,11 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordHold
                         break;
                     case (R.id.show_device):
                         intent = new Intent(context, FinderDataDisplay.class);
+                        intent.putExtra("COLLAR_ID", petInformation.getKey());
+                        context.startActivity(intent);
+                        break;
+                    case (R.id.setup_feeder):
+                        intent = new Intent(context, IndividualDiet.class);
                         intent.putExtra("COLLAR_ID", petInformation.getKey());
                         context.startActivity(intent);
                         break;

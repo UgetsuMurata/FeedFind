@@ -1,207 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dashboard_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Features.Dashboard"
     android:background="?background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Features.Dashboard">
 
     <LinearLayout
-        android:id="@+id/mainLayout"
+        android:id="@+id/subLayout_3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/cabin"
-            android:text="@string/user"
+            android:text="My Pets"
             android:textColor="?text"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/dashboard_description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/dashboard_description"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/quicksand"
             android:text="@string/desc"
             android:textColor="?text"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/features_item_row" />
+        </ScrollView>
 
         <LinearLayout
-            android:id="@+id/subLayout"
+            android:id="@+id/no_pets"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:paddingVertical="50dp"
+            android:visibility="gone">
 
             <ImageView
-                android:id="@+id/gps_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/nav_gps_icon" />
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/dog_paw" />
 
-            <ImageView
-                android:id="@+id/feeder_icon"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/nav_feeder_icon" />
-
-            <ImageView
-                android:id="@+id/report_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/nav_reports_icon" />
-
+                android:fontFamily="@font/fredoka"
+                android:text="You have no pets saved"
+                android:textAlignment="center"
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/subLayout_2"
-            android:layout_width="match_parent"
+            android:id="@+id/fab_group"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:gravity="end"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/gps_text"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/feeder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:fontFamily="@font/quicksand"
-                android:text="@string/gps"
-                android:textColor="?text"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:scaleType="center"
+                app:backgroundTint="#E0C7ED"
+                app:elevation="20dp"
+                app:fabCustomSize="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                app:maxImageSize="25dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/feeder_logo" />
 
-            <TextView
-                android:id="@+id/feeder_text"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/scan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="34dp"
-                android:fontFamily="@font/quicksand"
-                android:text="@string/feeder"
-                android:textColor="?text"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/report_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:fontFamily="@font/quicksand"
-                android:text="@string/reports"
-                android:textColor="?text"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/subLayout_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/myPets"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="30dp"
-                    android:fontFamily="@font/cabin"
-                    android:text="My Pets"
-                    android:textColor="?text"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-        
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/features_item_row"
-                    android:clipToPadding="false"/>
-            </ScrollView>
-            <LinearLayout
-                android:id="@+id/no_pets"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingVertical="50dp"
-                android:visibility="gone">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:src="@drawable/dog_paw"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="You have no pets saved"
-                    android:textSize="20dp"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/fredoka"
-                    />
-            </LinearLayout>
+                android:scaleType="center"
+                app:backgroundTint="#E0C7ED"
+                app:elevation="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:fabCustomSize="40dp"
+                app:maxImageSize="25dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/qr_code_scan" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
                 android:contentDescription="FloatingActionButton"
                 app:backgroundTint="#DDACF5"
                 app:elevation="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 app:maxImageSize="35dp"
                 app:srcCompat="@drawable/ic_plus" />
+        </LinearLayout>
+    </RelativeLayout>
 
-        </RelativeLayout>
-
-    </LinearLayout>
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

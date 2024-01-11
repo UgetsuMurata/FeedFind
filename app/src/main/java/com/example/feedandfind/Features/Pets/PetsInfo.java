@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.feedandfind.Application.FeedAndFind;
 import com.example.feedandfind.DataManager.FirebaseData;
+import com.example.feedandfind.Features.Feeder.IndividualDiet;
 import com.example.feedandfind.Features.Finder.FinderDataDisplay;
 import com.example.feedandfind.Items.PetInformation;
 import com.example.feedandfind.R;
@@ -81,6 +82,11 @@ public class PetsInfo extends AppCompatActivity {
                     case (R.id.show_device):
                         intent = new Intent(PetsInfo.this, FinderDataDisplay.class);
                         intent.putExtra("COLLAR_ID", CollarId);
+                        startActivity(intent);
+                        break;
+                    case (R.id.setup_feeder):
+                        intent = new Intent(PetsInfo.this, IndividualDiet.class);
+                        intent.putExtra("COLLAR_ID", petInformation.getKey());
                         startActivity(intent);
                         break;
                 }

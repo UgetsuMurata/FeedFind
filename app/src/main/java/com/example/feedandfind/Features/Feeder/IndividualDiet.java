@@ -1,4 +1,4 @@
-package com.example.feedandfind.FeederConfiguration;
+package com.example.feedandfind.Features.Feeder;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -15,11 +15,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.feedandfind.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Calendar;
 
-public class Feeder_Configuration_Individual_Diet extends AppCompatActivity {
+public class IndividualDiet extends AppCompatActivity {
 
     EditText meal1;
     EditText meal2;
@@ -40,7 +39,7 @@ public class Feeder_Configuration_Individual_Diet extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feeder_configuration_individual_diet);
+        setContentView(R.layout.features_feeder_individualdiet);
 
         autoCompleteTxt = findViewById(R.id.auto_complete_txt);
 
@@ -63,7 +62,7 @@ public class Feeder_Configuration_Individual_Diet extends AppCompatActivity {
                 currentHour = calendar.get(Calendar.HOUR_OF_DAY);
                 currentMinute = calendar.get(Calendar.MINUTE);
 
-                timePickerDialog = new TimePickerDialog(Feeder_Configuration_Individual_Diet.this, new TimePickerDialog.OnTimeSetListener() {
+                timePickerDialog = new TimePickerDialog(IndividualDiet.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
                         if (hourOfDay >= 12) {
@@ -87,7 +86,7 @@ public class Feeder_Configuration_Individual_Diet extends AppCompatActivity {
                 currentHour = calendar.get(Calendar.HOUR_OF_DAY);
                 currentMinute = calendar.get(Calendar.MINUTE);
 
-                timePickerDialog = new TimePickerDialog(Feeder_Configuration_Individual_Diet.this, new TimePickerDialog.OnTimeSetListener() {
+                timePickerDialog = new TimePickerDialog(IndividualDiet.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
                         if (hourOfDay >= 12) {
@@ -112,7 +111,7 @@ public class Feeder_Configuration_Individual_Diet extends AppCompatActivity {
                 currentHour = calendar.get(Calendar.HOUR_OF_DAY);
                 currentMinute = calendar.get(Calendar.MINUTE);
 
-                timePickerDialog = new TimePickerDialog(Feeder_Configuration_Individual_Diet.this, new TimePickerDialog.OnTimeSetListener() {
+                timePickerDialog = new TimePickerDialog(IndividualDiet.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
                         if (hourOfDay >= 12) {
@@ -132,7 +131,7 @@ public class Feeder_Configuration_Individual_Diet extends AppCompatActivity {
         cancelbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Feeder_Configuration_Individual_Diet.this, Feeder_Configuration_General_Geofence.class);
+                Intent intent = new Intent(IndividualDiet.this, Geofence.class);
                 startActivity(intent);
             }
         });

@@ -4,6 +4,9 @@
         android:id="@+id/show_device"
         android:title="Device Data" />
     <item
+        android:id="@+id/setup_feeder"
+        android:title="Setup Feeder" />
+    <item
         android:id="@+id/edit_pet"
         android:title="Edit Pet" />
     <item

@@ -36,21 +36,17 @@
             android:name=".Features.Pets.PetsInfo"
             android:exported="false" />
         <activity
-            android:name=".Features.Reports"
+            android:name=".Features.Feeder.General"
             android:exported="false" />
         <activity
-            android:name=".Features.Feeder.FeederDietSetter"
+            android:name=".Features.Feeder.Logs"
             android:exported="false" />
         <activity
-            android:name=".Features.Feeder.FeederLogs"
+            android:name=".Features.Feeder.Geofence"
             android:exported="false" />
         <activity
-            android:name=".Features.Feeder.FeederGeofenceSetting"
+            android:name=".Features.Feeder.IndividualDiet"
             android:exported="false" />
-        <activity
-            android:name=".Features.Feeder.FeederConfiguration"
-            android:exported="false" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/mapAPIKey" />
