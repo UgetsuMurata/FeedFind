@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +19,8 @@ import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.example.feedandfind.Application.FeedAndFind;
-import com.example.feedandfind.ColorHelpers.ThemedColor;
+import com.example.feedandfind.FunctionHelpers.ThemedColor;
 import com.example.feedandfind.DataManager.FirebaseData;
-import com.example.feedandfind.Features.Dashboard;
 import com.example.feedandfind.Items.PetInformation;
 import com.example.feedandfind.R;
 import com.google.firebase.database.DataSnapshot;

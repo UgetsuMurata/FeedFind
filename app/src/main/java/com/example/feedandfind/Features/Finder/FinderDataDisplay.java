@@ -1,5 +1,7 @@
 package com.example.feedandfind.Features.Finder;
 
+import static com.example.feedandfind.FunctionHelpers.CollarIDFunctions.findPetInformation;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -47,7 +49,7 @@ public class FinderDataDisplay extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.feautres_finder_pet_tracker_data_display);
+        setContentView(R.layout.features_finder_pet_tracker_data_display);
 
         progressBar = findViewById(R.id.progress_bar);
         progressText = findViewById(R.id.progress_text);
@@ -68,7 +70,11 @@ public class FinderDataDisplay extends AppCompatActivity {
         commentary = getResources().getString(R.string.steps_commentary_0);
         petMovementState = getResources().getString(R.string.movement_idle);
 
-        findPetInformation();
+        petInformation = findPetInformation(CollarId);
+        if (petInformation == null) {
+            getOnBackPressedDispatcher().onBackPressed();
+            Toast.makeText(this, "An error occurred. Please try again later.", Toast.LENGTH_SHORT).show();
+        }
 
         toolbarTitle.setText(petInformation.getName());
 
@@ -168,21 +174,6 @@ public class FinderDataDisplay extends AppCompatActivity {
             }
         }, 200);
 
-    }
-
-    private void findPetInformation(){
-        boolean found = false;
-        for (PetInformation petInfo : feedAndFind.getPetInformationList()){
-            if (CollarId.equals(petInfo.getKey())){
-                petInformation = petInfo;
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            getOnBackPressedDispatcher().onBackPressed();
-            Toast.makeText(this, "An error occurred. Please try again later.", Toast.LENGTH_SHORT).show();
-        }
     }
 }
 

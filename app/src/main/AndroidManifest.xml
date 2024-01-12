@@ -42,9 +42,6 @@
             android:name=".Features.Feeder.Logs"
             android:exported="false" />
         <activity
-            android:name=".Features.Feeder.Geofence"
-            android:exported="false" />
-        <activity
             android:name=".Features.Feeder.IndividualDiet"
             android:exported="false" />
         <meta-data

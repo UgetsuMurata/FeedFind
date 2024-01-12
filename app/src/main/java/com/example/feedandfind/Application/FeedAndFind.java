@@ -19,6 +19,7 @@ public class FeedAndFind extends Application {
 
     private static FeedAndFind instance;
     private List<PetInformation> petInformationList;
+    public String FEEDER_CODE;
 
     @Override
     public void onCreate() {
@@ -31,14 +32,15 @@ public class FeedAndFind extends Application {
         if (APP_CODE.equals("")){
             APP_CODE = getSaltString();
             SharedPref.write(this, "APP_CODE", APP_CODE);
-            System.out.println("NEW APP CODE: "+APP_CODE);
-        } else {
-            System.out.println("APP CODE: "+APP_CODE);
         }
     }
 
     public static FeedAndFind getInstance() {
         return instance;
+    }
+
+    public void setFEEDER_CODE(String FEEDER_CODE) {
+        this.FEEDER_CODE = FEEDER_CODE;
     }
 
     public List<PetInformation> getPetInformationList() {

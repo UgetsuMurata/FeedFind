@@ -1,4 +1,4 @@
-package com.example.feedandfind.ColorHelpers;
+package com.example.feedandfind.FunctionHelpers;
 
 import android.content.Context;
 import android.content.res.ColorStateList;

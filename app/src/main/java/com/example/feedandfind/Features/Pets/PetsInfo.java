@@ -1,5 +1,7 @@
 package com.example.feedandfind.Features.Pets;
 
+import static com.example.feedandfind.FunctionHelpers.CollarIDFunctions.findPetInformation;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -56,7 +58,12 @@ public class PetsInfo extends AppCompatActivity {
 
         openMenu.setOnClickListener(this::showPopupMenu);
 
-        findPetInformation();
+        petInformation = findPetInformation(CollarId);
+        if (petInformation == null) {
+            getOnBackPressedDispatcher().onBackPressed();
+            Toast.makeText(this, "An error occurred. Please try again later.", Toast.LENGTH_SHORT).show();
+        }
+
         renderInformation();
     }
 
@@ -96,20 +103,6 @@ public class PetsInfo extends AppCompatActivity {
 
         popupMenu.show();
     }
-    private void findPetInformation(){
-        boolean found = false;
-        for (PetInformation petInfo : feedAndFind.getPetInformationList()){
-            if (CollarId.equals(petInfo.getKey())){
-                petInformation = petInfo;
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            getOnBackPressedDispatcher().onBackPressed();
-            Toast.makeText(this, "An error occurred. Please try again later.", Toast.LENGTH_SHORT).show();
-        }
-    }
     private void renderInformation(){
         toolbarTitle.setText(petInformation.getName());
         petImage.setImageDrawable(ResourcesCompat.getDrawable(this.getResources(),
@@ -137,7 +130,11 @@ public class PetsInfo extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        findPetInformation();
+        petInformation = findPetInformation(CollarId);
+        if (petInformation == null) {
+            getOnBackPressedDispatcher().onBackPressed();
+            Toast.makeText(this, "An error occurred. Please try again later.", Toast.LENGTH_SHORT).show();
+        }
         renderInformation();
     }
 }

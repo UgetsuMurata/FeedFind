@@ -7,12 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.feedandfind.ColorHelpers.ThemedColor;
+import com.example.feedandfind.FunctionHelpers.ThemedColor;
 import com.example.feedandfind.R;
 
 import java.util.ArrayList;

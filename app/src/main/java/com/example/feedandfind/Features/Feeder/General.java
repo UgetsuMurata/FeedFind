@@ -15,25 +15,19 @@ public class General extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.features_feeder_general);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
-        bottomNavigationView.setSelectedItemId(R.id.Feeder_Configuration_General);
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.Feeder_Configuration_General:
-                    return true;
-                case R.id.Feeder_Configuration_General_Geofence:
-                    startActivity(new Intent(getApplicationContext(), Geofence.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                    return true;
-
-                case R.id.Feeder_Configuration_General_Logs:
-                    startActivity(new Intent(getApplicationContext(), Logs.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                    return true;
-            }
-            return false;
-        });
+//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+//        bottomNavigationView.setSelectedItemId(R.id.Feeder_Configuration_General);
+//        bottomNavigationView.setOnItemSelectedListener(item -> {
+//            switch (item.getItemId()) {
+//                case R.id.Feeder_Configuration_General:
+//                    return true;
+//                case R.id.Feeder_Configuration_General_Logs:
+//                    startActivity(new Intent(getApplicationContext(), Logs.class));
+//                    overridePendingTransition(0, 0);
+//                    finish();
+//                    return true;
+//            }
+//            return false;
+//        });
     }
 }

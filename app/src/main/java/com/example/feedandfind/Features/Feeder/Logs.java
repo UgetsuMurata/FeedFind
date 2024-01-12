@@ -15,24 +15,19 @@ public class Logs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.features_feeder_logs);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
-        bottomNavigationView.setSelectedItemId(R.id.Feeder_Configuration_General_Logs);
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.Feeder_Configuration_General:
-                    startActivity(new Intent(getApplicationContext(), General.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                    return true;
-                case R.id.Feeder_Configuration_General_Geofence:
-                    startActivity(new Intent(getApplicationContext(), Geofence.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                    return true;
-                case R.id.Feeder_Configuration_General_Logs:
-                    return true;
-            }
-            return false;
-        });
+//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+//        bottomNavigationView.setSelectedItemId(R.id.Feeder_Configuration_General_Logs);
+//        bottomNavigationView.setOnItemSelectedListener(item -> {
+//            switch (item.getItemId()) {
+//                case R.id.Feeder_Configuration_General:
+//                    startActivity(new Intent(getApplicationContext(), General.class));
+//                    overridePendingTransition(0, 0);
+//                    finish();
+//                    return true;
+//                case R.id.Feeder_Configuration_General_Logs:
+//                    return true;
+//            }
+//            return false;
+//        });
     }
 }

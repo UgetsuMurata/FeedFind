@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         feedAndFind = FeedAndFind.getInstance();
 
         final String Process1 = "Retrieving All Pets.";
-        final String Process2 = "Processing";
-        final String Process3 = "Another Sample Loading";
+        final String Process2 = "Retrieving Feeder Information";
+        final String Process3 = "Merging All Devices.";
 
         ArrayList<String> loadingProcesses = new ArrayList<>(Arrays.asList(
                 Process1,
@@ -142,12 +142,20 @@ public class MainActivity extends AppCompatActivity {
     }
     private void Process2(){
         long timeStarted = System.currentTimeMillis();
+        firebaseData.retrieveData(this, "Users/" + feedAndFind.APP_CODE + "/PetFeederQrCode", new FirebaseData.FirebaseDataCallback() {
+            @Override
+            public void onDataReceived(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null) {
+                    feedAndFind.setFEEDER_CODE(dataSnapshot.getValue().toString());
+                }
+            }
+        });
         //PROCESS 2
         while (System.currentTimeMillis()-timeStarted<1000);
     }
     private void Process3(){
         long timeStarted = System.currentTimeMillis();
         //PROCESS 3
-        while (System.currentTimeMillis()-timeStarted<1000);
+        while (System.currentTimeMillis()-timeStarted<500);
     }
 }
