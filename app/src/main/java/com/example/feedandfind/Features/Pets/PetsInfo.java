@@ -77,7 +77,7 @@ public class PetsInfo extends AppCompatActivity {
                 Intent intent;
                 switch (item.getItemId()) {
                     case (R.id.delete_pet):
-                        firebaseData.removeData("Users/"+feedAndFind.APP_CODE+"/PetFeederQrCodes/"+CollarId);
+                        firebaseData.removeData("Users/"+feedAndFind.APP_CODE+"/PetTrackerQrCodes/"+CollarId);
                         feedAndFind.removePetInformationList(CollarId);
                         getOnBackPressedDispatcher().onBackPressed();
                         break;

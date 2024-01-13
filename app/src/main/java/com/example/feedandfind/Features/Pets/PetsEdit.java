@@ -175,7 +175,7 @@ public class PetsEdit extends AppCompatActivity {
             values.put("medication", petMedication.getText() != null ? petMedication.getText().toString() : "");
             values.put("vetName", vetName.getText() != null ? vetName.getText().toString() : "");
             values.put("vetPhoneNumber", vetPhoneNumber.getText() != null ? vetPhoneNumber.getText().toString() : "");
-            firebaseData.addValues("Users/"+feedAndFind.APP_CODE+"/PetFeederQrCodes/"+CollarKey, values);
+            firebaseData.addValues("Users/"+feedAndFind.APP_CODE+"/PetTrackerQrCodes/"+CollarKey, values);
             Toast.makeText(this, "Pet information Edited!", Toast.LENGTH_SHORT).show();
 
             List<PetInformation> petInformationList = feedAndFind.getPetInformationList();

@@ -217,6 +217,8 @@ public class IndividualDiet extends AppCompatActivity {
                                     newSchedules.get(1),
                                     petInformation.getKey()),
                             300);
+                    getOnBackPressedDispatcher().onBackPressed();
+                    Toast.makeText(this, "Schedule saved successfully!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, "Please input all time schedules", Toast.LENGTH_SHORT).show();
                 }
@@ -236,6 +238,8 @@ public class IndividualDiet extends AppCompatActivity {
                                     newSchedules.get(2),
                                     petInformation.getKey()),
                             300);
+                    getOnBackPressedDispatcher().onBackPressed();
+                    Toast.makeText(this, "Schedule saved successfully!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, "Please input all time schedules", Toast.LENGTH_SHORT).show();
                 }
@@ -261,13 +265,13 @@ public class IndividualDiet extends AppCompatActivity {
                                     newSchedules.get(3),
                                     petInformation.getKey()),
                             300);
+                    getOnBackPressedDispatcher().onBackPressed();
+                    Toast.makeText(this, "Schedule saved successfully!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, "Please input all time schedules", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
-        getOnBackPressedDispatcher().onBackPressed();
-        Toast.makeText(this, "Schedule saved successfully!", Toast.LENGTH_SHORT).show();
     }
 
     private void deletePrevious() {

@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         long timeStarted = System.currentTimeMillis();
         CompletableFuture<Void> future = new CompletableFuture<>();
         List<PetInformation> petInformationList = new ArrayList<>();
-        firebaseData.retrieveData(this, "Users/"+feedAndFind.APP_CODE+"/PetFeederQrCodes", new FirebaseData.FirebaseDataCallback() {
+        firebaseData.retrieveData(this, "Users/"+feedAndFind.APP_CODE+"/PetTrackerQrCodes", new FirebaseData.FirebaseDataCallback() {
             @Override
             public void onDataReceived(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()){

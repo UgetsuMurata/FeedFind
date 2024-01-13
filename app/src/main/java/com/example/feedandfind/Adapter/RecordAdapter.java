@@ -105,7 +105,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordHold
                 Intent intent;
                 switch (item.getItemId()) {
                     case (R.id.delete_pet):
-                        firebaseData.removeData("Users/"+feedAndFind.APP_CODE+"/PetFeederQrCodes/"+petInformation.getKey());
+                        firebaseData.removeData("Users/"+feedAndFind.APP_CODE+"/PetTrackerQrCodes/"+petInformation.getKey());
                         feedAndFind.removePetInformationList(petInformation.getKey());
                         recordCallback.onDeleteCallback();
                         break;
