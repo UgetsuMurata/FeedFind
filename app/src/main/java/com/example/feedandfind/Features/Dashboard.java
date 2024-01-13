@@ -37,8 +37,8 @@ public class Dashboard extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     LinearLayout noPet;
     FirebaseData firebaseData;
-    FloatingActionButton moreOptions, feederFAB, scanFAB;
-    LinearLayout groupedFAB;
+    FloatingActionButton moreOptions, clickFeeder, clickScan;
+    LinearLayout groupedFAB, feederFAB, scanFAB;
     Boolean showingMoreOptions = false;
 
     @Override
@@ -51,6 +51,8 @@ public class Dashboard extends AppCompatActivity {
         moreOptions = findViewById(R.id.fab);
         feederFAB = findViewById(R.id.feeder);
         scanFAB = findViewById(R.id.scan);
+        clickFeeder = findViewById(R.id.clickable_feeder);
+        clickScan = findViewById(R.id.clickable_scan);
         parentLayout = findViewById(R.id.dashboard_layout);
         groupedFAB = findViewById(R.id.fab_group);
 
@@ -78,6 +80,8 @@ public class Dashboard extends AppCompatActivity {
             closeFABMenu();
             startActivity(new Intent(Dashboard.this, General.class));
         });
+        clickScan.setOnClickListener(view -> scanFAB.performClick());
+        clickFeeder.setOnClickListener(view -> feederFAB.performClick());
 
         parentLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override

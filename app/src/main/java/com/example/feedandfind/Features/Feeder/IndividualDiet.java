@@ -1,6 +1,8 @@
 package com.example.feedandfind.Features.Feeder;
 
 import static com.example.feedandfind.FunctionHelpers.CollarIDFunctions.findPetInformation;
+import static com.example.feedandfind.FunctionHelpers.TimeCode.timeCodeToTime;
+import static com.example.feedandfind.FunctionHelpers.TimeCode.timeToTimeCode;
 
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.example.feedandfind.Application.FeedAndFind;
 import com.example.feedandfind.DataManager.FirebaseData;
+import com.example.feedandfind.FunctionHelpers.TimeCode;
 import com.example.feedandfind.Items.PetInformation;
 import com.example.feedandfind.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -201,31 +204,6 @@ public class IndividualDiet extends AppCompatActivity {
         }, currentHour, currentMinute, false);
         timePickerDialog.setTitle("Choose a schedule:");
         timePickerDialog.show();
-    }
-
-    private String timeCodeToTime(@Nullable String code) {
-        // return "N/A" for invalid codes
-        if (code == null || "N/A".equals(code) || !code.matches("^[0-9]{4}$")) return "N/A";
-
-        // process valid code
-        String hour = code.substring(0, 2);
-        String minute = code.substring(2);
-        String timePeriod = "AM";
-        int actualHour;
-        int actualMinute = Integer.parseInt(minute);
-        if (Integer.parseInt(hour) > 12) {
-            actualHour = Integer.parseInt(hour) - 12;
-            timePeriod = "PM";
-        } else {
-            actualHour = Integer.parseInt(hour);
-        }
-
-        // return formatted time
-        return String.format(Locale.getDefault(), "%02d:%02d%s", actualHour, actualMinute, timePeriod);
-    }
-
-    private String timeToTimeCode(Integer hour, Integer minutes) {
-        return String.format(Locale.getDefault(), "%02d%02d", hour, minutes);
     }
 
     private void saveChanges() {

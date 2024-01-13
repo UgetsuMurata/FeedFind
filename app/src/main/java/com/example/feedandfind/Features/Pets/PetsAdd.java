@@ -180,7 +180,7 @@ public class PetsAdd extends AppCompatActivity {
             values.put("medication", petMedication.getText() != null ? petMedication.getText().toString() : "");
             values.put("vetName", vetName.getText() != null ? vetName.getText().toString() : "");
             values.put("vetPhoneNumber", vetPhoneNumber.getText() != null ? vetPhoneNumber.getText().toString() : "");
-            firebaseData.addValues("Users/"+feedAndFind.APP_CODE+"/PetFeederQrCodes/"+CollarKey, values);
+            firebaseData.addValues("Users/"+feedAndFind.APP_CODE+"/PetTrackerQrCodes/"+CollarKey, values);
             Toast.makeText(this, "New pet added!", Toast.LENGTH_SHORT).show();
 
             PetInformation petInformation = new PetInformation();

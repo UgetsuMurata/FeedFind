@@ -21,6 +21,9 @@
         android:theme="@style/Theme.FeedAndFind"
         tools:targetApi="31">
         <activity
+            android:name=".Features.Feeder.FeederAdd"
+            android:exported="false" />
+        <activity
             android:name=".Features.Finder.FinderDataDisplay"
             android:exported="true" />
         <activity
@@ -44,6 +47,7 @@
         <activity
             android:name=".Features.Feeder.IndividualDiet"
             android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/mapAPIKey" />
