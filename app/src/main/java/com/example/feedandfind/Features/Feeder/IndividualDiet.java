@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -35,10 +36,13 @@ import java.util.Locale;
 
 public class IndividualDiet extends AppCompatActivity {
 
-    private TextInputLayout meal1Layout, meal2Layout, meal3Layout;
+    private LinearLayout meal1Layout, meal2Layout, meal3Layout;
     private EditText meal1, meal2, meal3;
     private String currentTimePeriod;
     private final String[] items = {"Once a day", "Twice a day", "Thrice a day"};
+    private final String[] levelItems = {"1", "2", "3"};
+
+    private Integer delay1 = 300, delay2 = 300, delay3 = 300;
     private final HashMap<Integer, String> schedules = new HashMap<>();
     private final HashMap<Integer, String> newSchedules = new HashMap<>();
     private PetInformation petInformation;
@@ -53,12 +57,15 @@ public class IndividualDiet extends AppCompatActivity {
 
         TextView headerText = findViewById(R.id.dog_name);
         AutoCompleteTextView consumptionFrequency = findViewById(R.id.consumption_frequency);
+        AutoCompleteTextView firstMealLevel = findViewById(R.id.first_meal_level);
+        AutoCompleteTextView secondMealLevel = findViewById(R.id.second_meal_level);
+        AutoCompleteTextView thirdMealLevel = findViewById(R.id.third_meal_level);
         meal1 = findViewById(R.id.first_meal);
         meal2 = findViewById(R.id.second_meal);
         meal3 = findViewById(R.id.third_meal);
-        meal1Layout = findViewById(R.id.first_meal_layout);
-        meal2Layout = findViewById(R.id.second_meal_layout);
-        meal3Layout = findViewById(R.id.third_meal_layout);
+        meal1Layout = findViewById(R.id.first_meal_container);
+        meal2Layout = findViewById(R.id.second_meal_container);
+        meal3Layout = findViewById(R.id.third_meal_container);
         CardView cancelButton = findViewById(R.id.cancel_btn);
         CardView saveButton = findViewById(R.id.save_btn);
         ImageView petImage = findViewById(R.id.dog_pfp);
@@ -149,6 +156,71 @@ public class IndividualDiet extends AppCompatActivity {
             }
         });
 
+        // setup meal levels
+        ArrayAdapter<String> mealLevelItems = new ArrayAdapter<>(IndividualDiet.this,
+                R.layout.diet_list_item,
+                levelItems);
+        firstMealLevel.setAdapter(mealLevelItems);
+        firstMealLevel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                switch (item) {
+                    case "1":
+                        delay1 = 300;
+                        break;
+                    case "2":
+                        delay1 = 500;
+                        break;
+                    case "3":
+                        delay1 = 700;
+                        break;
+                }
+            }
+        });
+
+        firstMealLevel.setSelection(0);
+
+        secondMealLevel.setAdapter(mealLevelItems);
+        secondMealLevel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                switch (item) {
+                    case "1":
+                        delay2 = 300;
+                        break;
+                    case "2":
+                        delay2 = 500;
+                        break;
+                    case "3":
+                        delay2 = 700;
+                        break;
+                }
+            }
+        });
+        secondMealLevel.setSelection(0);
+
+        thirdMealLevel.setAdapter(mealLevelItems);
+        thirdMealLevel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                switch (item) {
+                    case "1":
+                        delay3 = 300;
+                        break;
+                    case "2":
+                        delay3 = 500;
+                        break;
+                    case "3":
+                        delay3 = 700;
+                        break;
+                }
+            }
+        });
+        thirdMealLevel.setSelection(0);
+
         // setup meal inputs
         meal1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -216,7 +288,7 @@ public class IndividualDiet extends AppCompatActivity {
                                     feedAndFind.FEEDER_CODE,
                                     newSchedules.get(1),
                                     petInformation.getKey()),
-                            300);
+                            delay1);
                     getOnBackPressedDispatcher().onBackPressed();
                     Toast.makeText(this, "Schedule saved successfully!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -232,12 +304,12 @@ public class IndividualDiet extends AppCompatActivity {
                                     feedAndFind.FEEDER_CODE,
                                     newSchedules.get(1),
                                     petInformation.getKey()),
-                            300);
+                            delay1);
                     firebaseData.addValue(String.format("PetFeeder/%s/const_schedules/%s/%s",
                                     feedAndFind.FEEDER_CODE,
                                     newSchedules.get(2),
                                     petInformation.getKey()),
-                            300);
+                            delay2);
                     getOnBackPressedDispatcher().onBackPressed();
                     Toast.makeText(this, "Schedule saved successfully!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -254,17 +326,17 @@ public class IndividualDiet extends AppCompatActivity {
                                     feedAndFind.FEEDER_CODE,
                                     newSchedules.get(1),
                                     petInformation.getKey()),
-                            300);
+                            delay1);
                     firebaseData.addValue(String.format("PetFeeder/%s/const_schedules/%s/%s",
                                     feedAndFind.FEEDER_CODE,
                                     newSchedules.get(2),
                                     petInformation.getKey()),
-                            300);
+                            delay2);
                     firebaseData.addValue(String.format("PetFeeder/%s/const_schedules/%s/%s",
                                     feedAndFind.FEEDER_CODE,
                                     newSchedules.get(3),
                                     petInformation.getKey()),
-                            300);
+                            delay3);
                     getOnBackPressedDispatcher().onBackPressed();
                     Toast.makeText(this, "Schedule saved successfully!", Toast.LENGTH_SHORT).show();
                 } else {
