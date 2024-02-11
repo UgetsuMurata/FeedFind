@@ -112,7 +112,7 @@ public class PetsInfo extends AppCompatActivity {
         petAge.setText(petInformation.getAge());
         petBirthday.setText(petInformation.getBirthday());
         if (!Objects.equals(petInformation.getWeight(), "")){
-            petWeight.setText(petInformation.getWeight());
+            petWeight.setText(String.format("%s kilograms", petInformation.getWeight()));
         } else {
             petWeight.setVisibility(View.GONE);
         }
